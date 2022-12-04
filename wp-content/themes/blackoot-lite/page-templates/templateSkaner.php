@@ -116,8 +116,8 @@ get_template_part( 'part-title' );
 				$additionalFlagsNmap = $additionalFlagsNmap . "-A"; //escapeshellcmd($aggressive)";
 			}
 
-			$cmd = $cmd . " '" . $additionalFlagsWordpress . "'" . " '" . $additionalFlagsNmap . "'";
 			while (@ ob_end_flush()); // end all output buffers if any
+			$cmd = $cmd . " '" . $additionalFlagsWordpress . "'" . " '" . $additionalFlagsNmap . "'";
 			$proc = popen($cmd, 'r');
 			while (!feof($proc))
 			{
@@ -127,10 +127,10 @@ get_template_part( 'part-title' );
 		}
 		else
 		{
-			echo "Please pass correct ip address / domain name and correct port range";
+			echo "Please pass a correct ip address or a domain name, and a correct port range";
 		}
-		//echo "<pre style='font-size:12px; font-family:Lucida Console'>${outputSkaner}</pre>";
-		?></textarea>
+		?>
+		</textarea>
     </div>
 </div>
 <?php
