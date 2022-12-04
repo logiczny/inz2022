@@ -1,8 +1,7 @@
 #!/bin/bash
 # test api token from wpscan, you can put more here like so: ("1" "2" "3")
-apiTokensList="apiKeys.list"
-apiToken=${shuf -n 1 ${apiTokensList}}
-echo $apiToken;
+apiTokensList="otherStuff/apiKeys.list"
+apiToken=$(shuf -n 1 "$apiTokensList")
 
 skanowanie()
 (

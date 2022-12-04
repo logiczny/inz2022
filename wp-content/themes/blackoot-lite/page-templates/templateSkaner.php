@@ -16,7 +16,7 @@ get_template_part( 'part-title' );
 					<td></td>
 				</tr>
 				<tr>
-					<td><input type="text" size="12" name="ipAddress" value="192.168.1.2"></td>
+					<td><input type="text" size="12" name="ipAddress" value="192.168.66.23"></td>
 					<td><input type="number" style="width: 4em" name="portFrom" min="0" max="65535" step="1" value="20"> - <input type="number" style="width: 4em" name="portTo" min="0" max="65535" step="1" value="443"></td>
 					<td><select id="pluginsDetection" name="pluginsDetection">
 						<option value="passive">passive</option>
