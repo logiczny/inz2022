@@ -3,6 +3,7 @@ log.*
 *.log
 wflogs/*
 bulletproof-security/*
+apiKeys.list
 
 #other
 # ignore all files starting with . or ~

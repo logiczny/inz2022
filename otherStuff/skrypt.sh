@@ -1,16 +1,15 @@
 #!/bin/bash
-apiTokensList=( "Xth2uF0JT6F0aTtGDWM9BqILyiriDdD3ilqkCaA3UM8" "KDjbDeun9cZGpsBghUDaLb0thaJaL9vMuwvBsex19Bs" "adN4gDJDqWnx1iLccqy0DEdd5Fr2qTY3f1OZdeGMaPg")
-apiToken=${apiTokensList[$RANDOM % ${#apiTokensList[@]} ]}
-RANDOM=$$$(date +%s)
+# test api token from wpscan, you can put more here like so: ("1" "2" "3")
+apiTokensList="apiKeys.list"
+apiToken=${shuf -n 1 ${apiTokensList}}
+echo $apiToken;
 
 skanowanie()
 (
 	if [ "$5" = "-A" ]; then
-	#wytnijSpam="test"
 	wytnijSpam1="Service detection performed. Please report any incorrect results at https://nmap.org/submit/"
 	wytnijSpam2="Nmap done: 1 IP address"
 	wytnijSpam3="Starting Nmap 7.70 ( https://nmap.org )"
-	#echo 'nmap "$1" -p"$2"-"$3" "$5" | "$wytnijSpam"'
 	nmap "$1" -p"$2"-"$3" "$5" --script=default,vuln | grep -v "$wytnijSpam1" | grep -v "$wytnijSpam2" | grep -v "$wytnijSpam3" 2>&1
 	fi
 	### remember to extend php cli & fpm timeouts, also nginx
