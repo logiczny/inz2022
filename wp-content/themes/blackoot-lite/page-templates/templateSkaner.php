@@ -7,7 +7,7 @@ get_template_part( 'part-title' );
         <form action="" method="post">
 			<table style="width:100%">
 				<tr>
-					<td>IP address:</td>
+					<td>IP address / domain name:</td>
 					<td>Ports range:</td>
 					<td>
 					

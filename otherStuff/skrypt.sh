@@ -16,7 +16,6 @@ skanowanie()
 
 	IFS=$'\n'; nmapOutput=( $(nmap "$1" -p"$2"-"$3" | grep open) )
 	declare -a otwartePorty;
-	echo "Znalezione otwarte porty:"
 
 	for i in "${!nmapOutput[@]}"; do
 		shortening=$(echo "${nmapOutput[i]}" | sed 's#/.*##g')
@@ -29,16 +28,14 @@ skanowanie()
 			echo "WPscan per port starts now";
 			wpscan --url http://${1}:${i} -f cli-no-color --api-token ${apiToken} --no-banner --random-user-agent "$4";
 			wpscan --url https://${1}:${i} -f cli-no-color --api-token ${apiToken} --no-banner --random-user-agent "$4";
-			
 		done
 	else
 		echo "Nothing found, try another ports?"
 	fi
 )
-
+echo "Start skanowania"
 #echo $5
 if [ $# -eq 5 ]; then
-echo wejscie w ifa
     skanowanie $1 $2 $3 "$4" "$5"
 fi
 
