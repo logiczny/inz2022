@@ -74,14 +74,7 @@ get_template_part( 'part-title' );
 
 		if (isset($ipAddress) and isset($portFrom) and isset($portTo))
 		{
-			$cmd = 
-			"/var/www/inz/otherStuff/skrypt.sh '" . 
-			escapeshellcmd($ipAddress) .
-			"' '" .
-			escapeshellcmd($portFrom) .
-			"' '" .
-			escapeshellcmd($portTo) .
-			"'";
+
 
 			if ($pluginsDetection == "passive")
 			{
@@ -115,15 +108,22 @@ get_template_part( 'part-title' );
 			{
 				$additionalFlagsNmap = $additionalFlagsNmap . "-A"; //escapeshellcmd($aggressive)";
 			}
-
-			while (@ ob_end_flush()); // end all output buffers if any
-			$cmd = $cmd . " '" . $additionalFlagsWordpress . "'" . " '" . $additionalFlagsNmap . "'";
-			$proc = popen($cmd, 'r');
-			while (!feof($proc))
-			{
-				echo fread($proc, 4096);
-			 	@ flush();
-			}
+$cmd = 
+"/var/www/inz/otherStuff/skrypt.sh '" . 
+escapeshellcmd($ipAddress) .
+"' '" .
+escapeshellcmd($portFrom) .
+"' '" .
+escapeshellcmd($portTo) .
+"'";
+while (@ ob_end_flush()); // end all output buffers if any
+$cmd = $cmd . " '" . $additionalFlagsWordpress . "'" . " '" . $additionalFlagsNmap . "'";
+$proc = popen($cmd, 'r');
+while (!feof($proc))
+{
+	echo fread($proc, 4096);
+	@ flush();
+}
 		}
 		else
 		{
