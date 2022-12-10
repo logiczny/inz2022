@@ -17,7 +17,7 @@ f_scan()
 	IFS=$'\n'; nmapOutput=( $(nmap "$1" -p"$2"-"$3" | grep open) )
 	declare -a openPorts;
 	if [ -n "$nmapOutput" ]; then
-		echo "Open ports found:"
+		echo "--- Open ports found:"
 	fi
 
 	for i in "${!nmapOutput[@]}"; do
@@ -28,17 +28,19 @@ f_scan()
 
 	if [ -n "$openPorts" ]; then
 		for i in "${openPorts[@]}"; do
-			echo "WPscan starts on port ${i}:";
-			echo "http:"
+			echo "";
+			echo "--- WPscan starts on port ${i} with http:"
 			wpscan --url http://${1}:${i} -f cli-no-color --api-token ${apiTokenChoosed} --no-banner --random-user-agent "$4";
-			echo "https:"
+			echo "";
+			echo "--- WPscan starts on port ${i} with https:"
 			wpscan --url https://${1}:${i} -f cli-no-color --api-token ${apiTokenChoosed} --no-banner --random-user-agent "$4";
 		done
 	else
-		echo "Nothing found, try another ports?"
+		echo "--- Nothing found, try another ports?"
 	fi
 )
-echo "Scan started for $1"
+echo "--- Scan started for $1"
+echo ""
 if [ $# -eq 5 ]; then
     f_scan $1 $2 $3 "$4" "$5"
 fi
