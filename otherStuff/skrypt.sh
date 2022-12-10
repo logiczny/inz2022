@@ -28,8 +28,10 @@ f_scan()
 
 	if [ -n "$openPorts" ]; then
 		for i in "${openPorts[@]}"; do
-			echo "WPscan per port starts now";
+			echo "WPscan starts on port ${i}:";
+			echo "http:"
 			wpscan --url http://${1}:${i} -f cli-no-color --api-token ${apiTokenChoosed} --no-banner --random-user-agent "$4";
+			echo "https:"
 			wpscan --url https://${1}:${i} -f cli-no-color --api-token ${apiTokenChoosed} --no-banner --random-user-agent "$4";
 		done
 	else
